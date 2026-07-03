@@ -76,7 +76,6 @@ function App() {
         setRevealDirection("next");
         setTouchStartX(null);
         setManualPlayerName("");
-        setAvailablePlayers(DEFAULT_PLAYERS);
         suppressNextClickRef.current = false;
     };
 
@@ -193,7 +192,7 @@ function App() {
                     <div className="app-header">
                         <p className="eyebrow">Imposter ?</p>
                         <h1>Imposter Kali</h1>
-                        <p className="lead">Slide the screen to each player during the reveal phase.</p>
+                        <p className="lead"></p>
                     </div>
                     <button className="restart-button" type="button" onClick={restartGame}>
                         Restart
