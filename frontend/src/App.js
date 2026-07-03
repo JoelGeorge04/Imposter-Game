@@ -141,17 +141,16 @@ function App() {
         }
 
         if (!showWord) {
+            setShowWord(true);
+            return;
+        }
+
+        if (revealIndex === playerList.length - 1) {
             if (!revealConfirm) {
                 setRevealConfirm(true);
                 return;
             }
 
-            setShowWord(true);
-            setRevealConfirm(false);
-            return;
-        }
-
-        if (revealIndex === playerList.length - 1) {
             setPhase("results");
             return;
         }
@@ -192,7 +191,7 @@ function App() {
             <div className="app-panel">
                 <div className="app-topbar">
                     <div className="app-header">
-                        <p className="eyebrow">Local pass-and-play</p>
+                        <p className="eyebrow">Imposter ?</p>
                         <h1>Imposter Kali</h1>
                         <p className="lead">Slide the screen to each player during the reveal phase.</p>
                     </div>
@@ -269,13 +268,18 @@ function App() {
                             {!showWord ? (
                                 <>
                                     <h2>Tap to reveal the word</h2>
-                                    <p className="muted">Tap the button twice, then keep the screen facing this player only.</p>
+                                    <p className="muted">Tap once to show this player's word, then pass the screen to the next player.</p>
                                 </>
                             ) : (
                                 <>
                                     <h2>Your word is</h2>
                                     <div className="word-chip">{currentRevealPlayer.word}</div>
-                                    <p className="muted">Memorize it, then pass the screen to the next player.</p>
+                                    <p className="muted">
+                                        Memorize it, then pass the screen to the next player.
+                                        {revealIndex === playerList.length - 1
+                                            ? " Tap twice on the final button to reveal the imposter."
+                                            : " Tap once to move to the next player."}
+                                    </p>
                                     <p className="swipe-hint">Swipe left for the next player.</p>
                                 </>
                             )}
